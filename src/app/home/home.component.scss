@@ -1,0 +1,25 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-color: #ff1744;
+
+  .form {
+    background-color: white;
+    width: min(90vw, 800px);
+    margin: 0 auto;
+  }
+
+  footer {
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    text-align: center;
+    color: white;
+
+    a {
+      color: #304ffe;
+      text-decoration: underline;
+      font-weight: 700;
+    }
+  }
+}
