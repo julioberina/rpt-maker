@@ -1,1 +1,37 @@
-<p>signup works!</p>
+<div class="container">
+  <form [formGroup]="fg">
+    <mat-form-field appearance="outline">
+      <mat-label>First Name</mat-label>
+      <input matInput formControlName="firstName">
+      <mat-error *ngIf="fg.controls.firstName.hasError('required')">First Name is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Last Name</mat-label>
+      <input matInput formControlName="lastName">
+      <mat-error *ngIf="fg.controls.lastName.hasError('required')">Last Name is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email">
+      <mat-error *ngIf="fg.controls.email.hasError('required')">Email is required</mat-error>
+      <mat-error *ngIf="!fg.controls.email.hasError('required') && fg.controls.email.hasError('pattern')">
+        Invalid email
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput [type]="inputType" formControlName="password">
+      <mat-icon matSuffix (click)="toggleVisibility()">
+        {{ inputType == 'password' ? 'visibility' : 'visibility_off' }}
+      </mat-icon>
+      <mat-error *ngIf="fg.controls.password.hasError('required')">Password is required</mat-error>
+    </mat-form-field>
+
+    <div class="submit">
+      <button mat-raised-button color="primary">Submit</button>
+    </div>
+  </form>
+</div>

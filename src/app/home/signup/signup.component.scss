@@ -1,0 +1,14 @@
+.container {
+  width: 100%;
+  padding-top: 10px;
+
+  mat-form-field, button {
+    width: 90%;
+    margin-left: 5%;
+  }
+
+  .submit {
+    padding-top: 30px;
+    padding-bottom: 10px;
+  }
+}
