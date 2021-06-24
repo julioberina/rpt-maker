@@ -4,6 +4,11 @@
     <span>Home</span>
   </div>
 
+  <div class="nav-item" (click)="navAction('search')" [ngStyle]="buttonStyle('search')">
+    <mat-icon>search</mat-icon>
+    <span>Search</span>
+  </div>
+
   <div class="nav-item" (click)="navAction('lift')" [ngStyle]="buttonStyle('lift')">
     <mat-icon>fitness_center</mat-icon>
     <span>Lift</span>

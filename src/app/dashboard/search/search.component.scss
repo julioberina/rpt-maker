@@ -1,0 +1,12 @@
+mat-toolbar {
+  height: 7vh;
+  width: min(100vw, 800px);
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 100vw;
+  height: 83vh;
+  overflow-y: auto;
+}

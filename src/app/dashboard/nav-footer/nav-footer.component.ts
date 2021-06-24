@@ -10,6 +10,7 @@ export class NavFooterComponent implements OnInit {
 
   private navUrls: any = {
     'home': '',
+    'search': '/search',
     'lift': '/lift-tracker'
   }
 
