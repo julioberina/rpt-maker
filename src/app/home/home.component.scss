@@ -1,18 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
+
 .container {
   width: 100vw;
   height: 100vh;
   background-color: #ff1744;
 
-  .form {
-    background-color: white;
-    width: min(90vw, 800px);
-    margin: 0 auto;
-    border-radius: 10px;
+  .form-container {
+    padding-top: 10vh;
+
+    .form {
+      background-color: white;
+      width: min(90vw, 800px);
+      margin: 0 auto;
+      border-radius: 5px;
+      padding: 20px 0;
+
+      h1 {
+        font-family: 'Roboto', sans-serif;
+        text-align: center;
+        font-weight: bold;
+        color: #ff1744;
+      }
+  
+      .toggle {
+        display: flex;
+        justify-content: flex-start;
+        width: 90%;
+        margin-left: 5%;
+  
+        button {
+          width: 50%;
+          text-transform: uppercase;
+          font-family: sans-serif;
+          font-size: 12pt;
+          font-weight: bold;
+        }
+      }
+    }
   }
 
   footer {
     position: absolute;
-    bottom: 0;
+    bottom: 5px;
     width: 100vw;
     text-align: center;
     color: white;

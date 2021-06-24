@@ -8,6 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   public isLogin = true;
+  public authStyle = {
+    'login': {'color': '#ff1744'},
+    'signup': {'color': 'black'}
+  }
 
   constructor() { }
 
@@ -16,5 +20,21 @@ export class HomeComponent implements OnInit {
 
   toggleComponent() {
     this.isLogin = !this.isLogin;
+  }
+
+  toggleColor(type: string) {
+    if (type === 'login') {
+      this.isLogin = true;
+      this.authStyle = {
+        'login': {'color': '#ff1744'},
+        'signup': {'color': 'black'}
+      }
+    } else {
+      this.isLogin = false;
+      this.authStyle = {
+        'signup': {'color': '#ff1744'},
+        'login': {'color': 'black'}
+      }
+    }
   }
 }

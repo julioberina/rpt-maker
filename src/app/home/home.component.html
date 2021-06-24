@@ -1,9 +1,19 @@
 <div class="container">
-  <div class="form">
-    <app-login *ngIf="isLogin"></app-login>
-  </div>
-  <div class="form">
-    <app-signup *ngIf="!isLogin"></app-signup>
+  <div class="form-container">
+    <div class="form">
+      <h1>RPT Maker</h1>
+  
+      <div class="toggle">
+        <button mat-flat-button [ngStyle]="authStyle['login']" 
+                [disableRipple]="true"
+                (click)="toggleColor('login')">Log In</button>
+        <button mat-flat-button [ngStyle]="authStyle['signup']" 
+                [disableRipple]="true"
+                (click)="toggleColor('signup')">Sign Up</button>
+      </div>
+      <app-login *ngIf="isLogin"></app-login>
+      <app-signup *ngIf="!isLogin"></app-signup>
+    </div>
   </div>
 
   <footer>
