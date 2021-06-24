@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
 import { RouterModule, Routes } from '@angular/router';
+import { LiftTrackerComponent } from './lift-tracker/lift-tracker.component';
 
 const routes: Routes = [
-  { path: '', component: DashboardComponent }
+  { path: '', component: DashboardComponent },
+  { path: 'lift-tracker', component: LiftTrackerComponent }
 ]
 
 @NgModule({
