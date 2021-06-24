@@ -10,7 +10,7 @@ import { AngularMaterialModule } from 'src/shared/angular-material.module';
   declarations: [
     DashboardComponent,
     LiftTrackerComponent,
-    NavFooterComponent
+    NavFooterComponent,
   ],
   imports: [
     CommonModule,
