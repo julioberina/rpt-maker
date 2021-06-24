@@ -5,6 +5,7 @@ import { HomeRoutingModule } from './home-routing.module';
 import { AngularMaterialModule } from 'src/shared/angular-material.module';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,9 @@ import { SignupComponent } from './signup/signup.component';
   imports: [
     CommonModule,
     HomeRoutingModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class HomeModule { }
