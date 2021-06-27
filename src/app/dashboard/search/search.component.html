@@ -14,7 +14,10 @@
   </div>
 
   <div class="workouts">
-    
+    <div class="workout" *ngFor="let program of workoutPrograms | async">
+      <h3>{{ program.name }}</h3>
+      <p>{{ program.frequency }} day(s)/week for {{ program.weeks }} weeks</p>
+    </div>
   </div>
 </div>
 
