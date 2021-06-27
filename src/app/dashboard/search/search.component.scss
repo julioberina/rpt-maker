@@ -1,5 +1,20 @@
 .container {
-  width: 100vw;
+  width: min(100vw, 800px);
   height: 83vh;
   overflow-y: auto;
+  margin: 0 auto;
+
+  .search {
+    height: 10vh;
+
+    mat-form-field {
+      width: 80%;
+      margin-left: 10%;
+    }
+  }
+
+  .workouts {
+    height: 73vh;
+    overflow-y: auto;
+  }
 }

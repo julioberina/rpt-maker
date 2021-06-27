@@ -1,7 +1,19 @@
 <app-dash-header></app-dash-header>
 
 <div class="container">
-  <p>Search</p>
+  <div class="search">
+    <form [formGroup]="fg">
+      <mat-form-field appearance="outline">
+        <mat-label>Query</mat-label>
+        <input matInput formControlName="query">
+        <mat-icon matSuffix (click)="search()">search</mat-icon>
+      </mat-form-field>
+    </form>
+  </div>
+
+  <div class="workouts">
+    
+  </div>
 </div>
 
 <app-nav-footer [activeNavItem]="'search'"></app-nav-footer>

@@ -7,6 +7,7 @@ import { NavFooterComponent } from './nav-footer/nav-footer.component';
 import { AngularMaterialModule } from 'src/shared/angular-material.module';
 import { SearchComponent } from './search/search.component';
 import { DashHeaderComponent } from './dash-header/dash-header.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,9 @@ import { DashHeaderComponent } from './dash-header/dash-header.component';
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
   ]
 })
 export class DashboardModule { }

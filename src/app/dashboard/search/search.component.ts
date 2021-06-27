@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-search',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+  public fg: any;
+
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.fg = this.fb.group({
+      query: ['']
+    });
   }
 
+  public search() {
+    console.log('query = ' + this.fg.controls.query.value);
+  }
 }
