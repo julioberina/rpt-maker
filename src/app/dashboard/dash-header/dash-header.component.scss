@@ -1,0 +1,14 @@
+mat-toolbar {
+  height: 7vh;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+
+  div:first-child {
+    visibility: hidden;
+  }
+
+  div:last-child {
+    text-align: right;
+  }
+}

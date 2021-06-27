@@ -6,6 +6,7 @@ import { LiftTrackerComponent } from './lift-tracker/lift-tracker.component';
 import { NavFooterComponent } from './nav-footer/nav-footer.component';
 import { AngularMaterialModule } from 'src/shared/angular-material.module';
 import { SearchComponent } from './search/search.component';
+import { DashHeaderComponent } from './dash-header/dash-header.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { SearchComponent } from './search/search.component';
     LiftTrackerComponent,
     NavFooterComponent,
     SearchComponent,
+    DashHeaderComponent,
   ],
   imports: [
     CommonModule,
