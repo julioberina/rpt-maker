@@ -8,6 +8,7 @@ import { AngularMaterialModule } from 'src/shared/angular-material.module';
 import { SearchComponent } from './search/search.component';
 import { DashHeaderComponent } from './dash-header/dash-header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { WorkoutViewerComponent } from './workout-viewer/workout-viewer.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NavFooterComponent,
     SearchComponent,
     DashHeaderComponent,
+    WorkoutViewerComponent,
   ],
   imports: [
     CommonModule,
