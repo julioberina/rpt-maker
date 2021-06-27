@@ -5,7 +5,11 @@
   margin: 0 auto;
 
   .search {
-    height: 10vh;
+    height: 20vh;
+
+    h2 {
+      text-align: center;
+    }
 
     mat-form-field {
       width: 80%;
@@ -14,7 +18,7 @@
   }
 
   .workouts {
-    height: 73vh;
+    height: 63vh;
     overflow-y: auto;
   }
 }
