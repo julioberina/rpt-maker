@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/shared/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +16,15 @@ export class LoginComponent implements OnInit {
   public fg: any;
   public inputType = 'password';
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+              private authService: AuthService,
+              private router: Router,
+              private snackBar: MatSnackBar) {
+              
+    if (this.authService.isLoggedIn()) {
+      this.router.navigateByUrl('/dashboard');
+    }            
+  }
 
   ngOnInit(): void {
     this.fg = this.fb.group({
@@ -24,5 +35,18 @@ export class LoginComponent implements OnInit {
 
   toggleVisibility() {
     this.inputType = this.inputType == 'password' ? 'text' : 'password';
+  }
+
+  login(data: any) {
+    this.authService.login(data).subscribe(
+      res => {
+        localStorage.setItem('token', res.access_token);
+        this.router.navigateByUrl('/dashboard');
+      },
+      err => {
+        this.snackBar.open('Invalid Username or Password', 'Dismiss', { duration: 3000 });
+        console.error(err);
+      }
+    )
   }
 }

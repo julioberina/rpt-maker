@@ -9,6 +9,7 @@ import { SearchComponent } from './search/search.component';
 import { DashHeaderComponent } from './dash-header/dash-header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { WorkoutViewerComponent } from './workout-viewer/workout-viewer.component';
+import { SharedModule } from 'src/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { WorkoutViewerComponent } from './workout-viewer/workout-viewer.componen
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    AngularMaterialModule,
+    SharedModule,
     FormsModule,
     ReactiveFormsModule,
   ]

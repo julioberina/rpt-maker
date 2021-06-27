@@ -6,6 +6,7 @@ import { AngularMaterialModule } from 'src/shared/angular-material.module';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from 'src/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     HomeRoutingModule,
-    AngularMaterialModule,
+    SharedModule,
     FormsModule,
     ReactiveFormsModule
   ]
