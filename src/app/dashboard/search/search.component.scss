@@ -22,7 +22,16 @@
     overflow-y: auto;
 
     .workout {
+      padding-top: 3px;
       
+      mat-card {
+        width: 75%;
+        margin: 0 auto;
+
+        button {
+          text-transform: uppercase;
+        }
+      }
     }
   }
 }

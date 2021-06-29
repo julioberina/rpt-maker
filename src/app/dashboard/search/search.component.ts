@@ -37,7 +37,9 @@ export class SearchComponent implements OnInit {
     } else {
       this.workoutPrograms = this.workoutPrograms$;
     }
+  }
 
-    console.log('query = ' + this.fg.controls.query.value);
+  public addWorkout(id: string) {
+    console.log('id = ' + id);
   }
 }

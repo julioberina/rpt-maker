@@ -15,8 +15,16 @@
 
   <div class="workouts">
     <div class="workout" *ngFor="let program of workoutPrograms | async">
-      <h3>{{ program.name }}</h3>
-      <p>{{ program.frequency }} day(s)/week for {{ program.weeks }} weeks</p>
+      <mat-card>
+        <mat-card-title>{{ program.name }}</mat-card-title>
+        <mat-card-subtitle>{{ program.weeks }}-Week Program</mat-card-subtitle>
+        <mat-card-content>
+          {{ program.frequency }} days/week for {{ program.weeks }} weeks
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button color="primary" (click)="addWorkout(program.id)">Add Workout</button>
+        </mat-card-actions>
+      </mat-card>
     </div>
   </div>
 </div>

@@ -10,7 +10,15 @@ export class DashboardService {
 
   constructor(private http: HttpService) { }
 
+  public getWorkouts(): Observable<any> {
+    return this.http.get(apiEndpoints.workouts);
+  }
+
   public getAllWorkoutPrograms(): Observable<any> {
     return this.http.get(apiEndpoints.getAllWorkoutPrograms);
+  }
+
+  public deleteWorkout(id: string) {
+    return this.http.delete(`${apiEndpoints.workouts}/${id}`);
   }
 }

@@ -1,7 +1,21 @@
 <app-dash-header></app-dash-header>
 
 <div class="container">
-  <p>Lift Tracker</p>
+  <div class="workouts">
+    <ng-container *ngFor="let workout of workouts | async">
+      <mat-card>
+        <mat-card-title>{{ workout.name }}</mat-card-title>
+        <mat-card-subtitle>{{ workout.weeks }}-Week Program</mat-card-subtitle>
+        <mat-card-content>
+          {{ workout.frequency }} days/week for {{ workout.weeks }} weeks
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button color="primary" (click)="viewWorkout(workout.id)">View Workout</button>
+          <button mat-button color="warn" (click)="deleteWorkout(workout.id)">Delete Workout</button>
+        </mat-card-actions>
+      </mat-card>
+    </ng-container>
+  </div>
 </div>
 
 <app-nav-footer [activeNavItem]="'lift'"></app-nav-footer>
