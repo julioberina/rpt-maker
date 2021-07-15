@@ -4,6 +4,7 @@ import { AngularMaterialModule } from './angular-material.module';
 import { AuthService } from './auth.service';
 import { HttpService } from './http.service';
 import { HttpClient } from '@angular/common/http';
+import { CacheService } from './cache.service';
 
 
 
@@ -14,7 +15,7 @@ import { HttpClient } from '@angular/common/http';
     CommonModule,
     AngularMaterialModule,
   ],
-  providers: [AuthService, HttpClient, HttpService],
+  providers: [AuthService, HttpClient, HttpService, CacheService],
   exports: [
     AngularMaterialModule,
   ]

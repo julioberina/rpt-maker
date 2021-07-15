@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { CacheService } from './cache.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +9,9 @@ export class HttpService {
   private token: string;
   private headers: HttpHeaders;
 
-  constructor(private http: HttpClient) { 
-    this.token = localStorage.getItem('token') || '';
+  constructor(private http: HttpClient,
+              private cacheService: CacheService) { 
+    this.token = this.cacheService.get('token') || '';
     this.headers = new HttpHeaders({ 
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + this.token

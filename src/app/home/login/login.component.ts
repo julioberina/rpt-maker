@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/shared/auth.service';
+import { CacheService } from 'src/shared/cache.service';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,
+              private cacheService: CacheService,
               private router: Router,
               private snackBar: MatSnackBar) {
               
@@ -40,7 +42,7 @@ export class LoginComponent implements OnInit {
   login(data: any) {
     this.authService.login(data).subscribe(
       res => {
-        localStorage.setItem('token', res.access_token);
+        this.cacheService.add('token', res.access_token);
         this.router.navigateByUrl('/dashboard');
       },
       err => {

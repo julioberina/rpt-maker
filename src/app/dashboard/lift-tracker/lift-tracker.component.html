@@ -4,7 +4,7 @@
   <div class="workouts">
     <ng-container *ngFor="let workout of workouts | async">
       <mat-card>
-        <mat-card-title>{{ workout.name }}</mat-card-title>
+        <mat-card-title>{{ workout.alias }}</mat-card-title>
         <mat-card-subtitle>{{ workout.weeks }}-Week Program</mat-card-subtitle>
         <mat-card-content>
           {{ workout.frequency }} days/week for {{ workout.weeks }} weeks

@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { apiEndpoints } from 'src/api-endpoints';
+import { CacheService } from './cache.service';
 import { HttpService } from './http.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private http: HttpService) { }
+  constructor(private http: HttpService,
+              private cacheService: CacheService) { }
 
   isLoggedIn() {
     const parsedPayload = this.getJwt();
@@ -19,7 +21,7 @@ export class AuthService {
   }
 
   getJwt() {
-    const token = localStorage.getItem('token'); // get token from local storage
+    const token = this.cacheService.get('token'); // get token from local storage
     const payload = atob(token?.split('.')[1] || ''); // decode payload of token
     const parsedPayload = payload ? JSON.parse(payload) : {}; // convert payload into an Object
     return parsedPayload;
