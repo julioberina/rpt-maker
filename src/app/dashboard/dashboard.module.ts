@@ -10,6 +10,7 @@ import { DashHeaderComponent } from './dash-header/dash-header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { WorkoutViewerComponent } from './workout-viewer/workout-viewer.component';
 import { SharedModule } from 'src/shared/shared.module';
+import { AddWorkoutDialogComponent } from './add-workout-dialog/add-workout-dialog.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { SharedModule } from 'src/shared/shared.module';
     SearchComponent,
     DashHeaderComponent,
     WorkoutViewerComponent,
+    AddWorkoutDialogComponent,
   ],
   imports: [
     CommonModule,
