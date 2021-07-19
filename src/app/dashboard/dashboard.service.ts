@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { concat, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { apiEndpoints } from 'src/api-endpoints';
 import { CacheService } from 'src/shared/cache.service';
@@ -12,6 +12,18 @@ export class DashboardService {
 
   constructor(private http: HttpService,
               private cacheService: CacheService,) { }
+
+  public createWorkout(data: any): Observable<any> {
+    const obs1 = this.http.post(apiEndpoints.workouts, data);
+    const obs2 = this.http.get(apiEndpoints.workouts).pipe(
+      map(item => {
+        this.cacheService.add('getWorkouts', item);
+        return item;
+      })
+    );
+
+    return concat(obs1, obs2);
+  }
 
   public getWorkouts(): Observable<any> {
     const data = this.cacheService.get('getWorkouts');

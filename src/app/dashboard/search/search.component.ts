@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { DashboardService } from '../dashboard.service';
 import { filter } from 'rxjs/operators';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { AddWorkoutDialogComponent } from '../add-workout-dialog/add-workout-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-search',
@@ -19,6 +20,7 @@ export class SearchComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private dashboardService: DashboardService,
+              private snackBar: MatSnackBar,
               private dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -50,7 +52,15 @@ export class SearchComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log(`Alias: ${result.alias}`);
+        this.dashboardService.createWorkout({ ...result, name }).subscribe(res => {
+          this.snackBar.open('Workout created successfully', 'Close', {
+            duration: 3000,
+            panelClass: 'snack-style'
+          });
+        },
+        err => this.snackBar.open('Error creating workout', 'Close', {
+          duration: 3000
+        }));
       }
     });
   }
