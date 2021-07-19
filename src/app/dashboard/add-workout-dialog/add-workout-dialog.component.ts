@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-workout-dialog',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddWorkoutDialogComponent implements OnInit {
 
-  constructor() { }
+  public fg: any;
+
+  constructor(private dialogRef: MatDialogRef<AddWorkoutDialogComponent>,
+              private fb: FormBuilder,
+              @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
+    this.fg = this.fb.group({
+      alias: ['', Validators.required]
+    })
   }
 
+  onClose() {
+    this.dialogRef.close();
+  }
 }
