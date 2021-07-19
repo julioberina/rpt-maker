@@ -3,9 +3,12 @@
   height: 83vh;
   overflow-y: auto;
 
-  .workouts {
-    padding-top: 15px;
+  h1 { 
+    margin-top: 7px;
+    text-align: center; 
+  }
 
+  .workouts {
     mat-card {
       width: 75%;
       margin: 0 auto;
