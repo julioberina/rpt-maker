@@ -55,11 +55,12 @@ export class SearchComponent implements OnInit {
         this.dashboardService.createWorkout({ ...result, name }).subscribe(res => {
           this.snackBar.open('Workout created successfully', 'Close', {
             duration: 3000,
-            panelClass: 'snack-style'
+            panelClass: ['snack-bar']
           });
         },
         err => this.snackBar.open('Error creating workout', 'Close', {
-          duration: 3000
+          duration: 3000,
+          panelClass: ['snack-bar']
         }));
       }
     });

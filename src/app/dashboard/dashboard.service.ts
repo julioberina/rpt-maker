@@ -48,13 +48,14 @@ export class DashboardService {
   }
 
   public deleteWorkout(id: string) {
-    const data = this.cacheService.get('deleteWorkoutId');
-
-    return data ? of(data) : this.http.delete(`${apiEndpoints.workouts}/${id}`).pipe(
+    const obs1 = this.http.delete(`${apiEndpoints.workouts}/${id}`);
+    const obs2 = this.http.get(apiEndpoints.workouts).pipe(
       map(item => {
-        this.cacheService.add('deleteWorkoutId', item);
+        this.cacheService.add('getWorkouts', item);
         return item;
       })
     );
+
+    return concat(obs1, obs2);
   }
 }

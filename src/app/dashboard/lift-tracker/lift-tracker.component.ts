@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { DashboardService } from '../dashboard.service';
 
 @Component({
@@ -10,7 +11,8 @@ export class LiftTrackerComponent implements OnInit {
 
   public workouts: any;
 
-  constructor(private dashboardService: DashboardService) { }
+  constructor(private dashboardService: DashboardService,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.workouts = this.dashboardService.getWorkouts();
@@ -21,6 +23,16 @@ export class LiftTrackerComponent implements OnInit {
   }
 
   deleteWorkout(id: string) {
-    console.log('deleteId: ' + id);
+    this.dashboardService.deleteWorkout(id).subscribe(res => {
+      this.snackBar.open('Workout deleted successfully', 'Close', {
+        duration: 3000,
+        panelClass: ['snack-bar']
+      });
+
+      this.workouts = this.dashboardService.getWorkouts();
+    }, err => this.snackBar.open('Error deleting workout', 'Close', {
+      duration: 3000,
+      panelClass: ['snack-bar']
+    }));
   }
 }
