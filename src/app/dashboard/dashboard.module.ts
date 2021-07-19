@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { WorkoutViewerComponent } from './workout-viewer/workout-viewer.component';
 import { SharedModule } from 'src/shared/shared.module';
 import { AddWorkoutDialogComponent } from './add-workout-dialog/add-workout-dialog.component';
+import { DeleteWorkoutDialogComponent } from './delete-workout-dialog/delete-workout-dialog.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { AddWorkoutDialogComponent } from './add-workout-dialog/add-workout-dial
     DashHeaderComponent,
     WorkoutViewerComponent,
     AddWorkoutDialogComponent,
+    DeleteWorkoutDialogComponent,
   ],
   imports: [
     CommonModule,

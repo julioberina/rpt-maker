@@ -52,17 +52,21 @@ export class SearchComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.dashboardService.createWorkout({ ...result, name }).subscribe(res => {
-          this.snackBar.open('Workout created successfully', 'Close', {
-            duration: 3000,
-            panelClass: ['snack-bar']
-          });
-        },
-        err => this.snackBar.open('Error creating workout', 'Close', {
-          duration: 3000,
-          panelClass: ['snack-bar']
-        }));
+        this.add({ ...result, name });
       }
     });
+  }
+
+  private add(data: { alias: string, name: string }) {
+    this.dashboardService.createWorkout(data).subscribe(res => {
+      this.snackBar.open('Workout created successfully', 'Close', {
+        duration: 3000,
+        panelClass: ['snack-bar']
+      });
+    },
+    err => this.snackBar.open('Error creating workout', 'Close', {
+      duration: 3000,
+      panelClass: ['snack-bar']
+    }));
   }
 }

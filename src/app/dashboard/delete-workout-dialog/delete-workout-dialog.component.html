@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Delete Workout</h1>
+<div mat-dialog-content>
+  <p>Are you sure you want to delete <strong>{{ data.alias }}</strong></p>
+</div>
+<div mat-dialog-actions>
+  <button mat-flat-button (click)="onClose()">No</button>
+  <button mat-flat-button color="primary" [mat-dialog-close]="true">Yes</button>
+</div>
