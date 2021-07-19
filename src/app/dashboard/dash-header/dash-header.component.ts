@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CacheService } from 'src/shared/cache.service';
 
 @Component({
   selector: 'app-dash-header',
@@ -8,13 +9,14 @@ import { Router } from '@angular/router';
 })
 export class DashHeaderComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              private cacheService: CacheService) { }
 
   ngOnInit(): void {
   }
 
   logout() {
-    localStorage.removeItem('token');
-    this.router.navigateByUrl('/');
+    this.cacheService.clear();
+    this.router.navigate(['/']);
   }
 }

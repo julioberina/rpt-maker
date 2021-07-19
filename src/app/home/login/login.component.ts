@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
 
   public fg: any;
   public inputType = 'password';
+  public isSubmitted = false;
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,
@@ -40,6 +41,8 @@ export class LoginComponent implements OnInit {
   }
 
   login(data: any) {
+    this.isSubmitted = true;
+
     this.authService.login(data).subscribe(
       res => {
         this.cacheService.add('token', res.access_token);
@@ -48,7 +51,8 @@ export class LoginComponent implements OnInit {
       err => {
         this.snackBar.open('Invalid Username or Password', 'Dismiss', { duration: 3000 });
         console.error(err);
+        this.isSubmitted = false;
       }
-    )
+    );
   }
 }
