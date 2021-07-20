@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
               private snackBar: MatSnackBar) {
               
     if (this.authService.isLoggedIn()) {
-      this.router.navigateByUrl('/dashboard');
+      this.router.navigate(['/', 'dashboard']);
     }            
   }
 
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(data).subscribe(
       res => {
         this.cacheService.add('token', res.access_token);
-        this.router.navigateByUrl('/dashboard');
+        window.location.reload();
       },
       err => {
         this.snackBar.open('Invalid Username or Password', 'Dismiss', { duration: 3000 });

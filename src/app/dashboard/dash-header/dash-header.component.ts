@@ -9,14 +9,14 @@ import { CacheService } from 'src/shared/cache.service';
 })
 export class DashHeaderComponent implements OnInit {
 
-  constructor(private router: Router,
-              private cacheService: CacheService) { }
+  constructor(private cacheService: CacheService) { }
 
   ngOnInit(): void {
+
   }
 
   logout() {
     this.cacheService.clear();
-    this.router.navigate(['/']);
+    window.location.reload();
   }
 }
