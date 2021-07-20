@@ -10,5 +10,9 @@
   .submit {
     padding-top: 30px;
     padding-bottom: 10px;
+
+    mat-spinner {
+      margin: 0 auto;
+    }
   }
 }

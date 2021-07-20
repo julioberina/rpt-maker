@@ -22,14 +22,13 @@ export class LoginComponent implements OnInit {
               private authService: AuthService,
               private cacheService: CacheService,
               private router: Router,
-              private snackBar: MatSnackBar) {
-              
-    if (this.authService.isLoggedIn()) {
-      this.router.navigate(['/', 'dashboard']);
-    }            
-  }
+              private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate(['/', 'dashboard']);
+    }
+
     this.fg = this.fb.group({
       email: ['', Validators.compose([Validators.required, Validators.pattern(this.emailRegex)])],
       password: ['', Validators.required]

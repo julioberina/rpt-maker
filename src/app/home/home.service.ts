@@ -9,4 +9,8 @@ import { HttpService } from 'src/shared/http.service';
 export class HomeService {
 
   constructor(private http: HttpService) { }
+
+  public createUser(data: any): Observable<any> {
+    return this.http.post(apiEndpoints.signup, data);
+  }
 }
