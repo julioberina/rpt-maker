@@ -12,6 +12,7 @@ import { WorkoutViewerComponent } from './workout-viewer/workout-viewer.componen
 import { SharedModule } from 'src/shared/shared.module';
 import { AddWorkoutDialogComponent } from './add-workout-dialog/add-workout-dialog.component';
 import { DeleteWorkoutDialogComponent } from './delete-workout-dialog/delete-workout-dialog.component';
+import { ViewWorkoutComponent } from './view-workout/view-workout.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { DeleteWorkoutDialogComponent } from './delete-workout-dialog/delete-wor
     WorkoutViewerComponent,
     AddWorkoutDialogComponent,
     DeleteWorkoutDialogComponent,
+    ViewWorkoutComponent,
   ],
   imports: [
     CommonModule,

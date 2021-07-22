@@ -12,6 +12,7 @@ import { DeleteWorkoutDialogComponent } from '../delete-workout-dialog/delete-wo
 export class LiftTrackerComponent implements OnInit {
 
   public workouts: any;
+  public isViewWorkout = false;
 
   constructor(private dashboardService: DashboardService,
               private dialog: MatDialog,
@@ -36,6 +37,10 @@ export class LiftTrackerComponent implements OnInit {
         this.delete(id);
       }
     })
+  }
+
+  backToLiftTracker() {
+    this.isViewWorkout = false;
   }
 
   private delete(id: string) {

@@ -36,6 +36,15 @@ export class DashboardService {
     );
   }
 
+  public getWorkoutsNoCache(): Observable<any> {
+    return this.http.get(apiEndpoints.workouts).pipe(
+      map(item => {
+        this.cacheService.add('getWorkouts', item);
+        return item;
+      })
+    );
+  }
+
   public getAllWorkoutPrograms(): Observable<any> {
     const data = this.cacheService.get('getAllWorkoutPrograms');
 
@@ -45,6 +54,10 @@ export class DashboardService {
         return item;
       })
     );
+  }
+
+  public updateExercises(exercises: any) {
+    return this.http.put(apiEndpoints.exercises, exercises);
   }
 
   public deleteWorkout(id: string) {
