@@ -1,1 +1,50 @@
-<p>view-workout works!</p>
+<div class="container">
+  <h1>{{ workout.alias }}</h1>
+  <h2>Week {{ currentWeek }}</h2>
+  
+  <div class="table-container" *ngFor="let day of daysPerWeek()">
+    <h2>Day {{ day }}</h2>
+  
+    <table mat-table [dataSource]="dayExercises(day)" class="mat-elevation-z8">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="sets">
+        <th mat-header-cell *matHeaderCellDef>Sets</th>
+        <td mat-cell *matCellDef="let element">{{ element.sets }}</td>
+      </ng-container>
+    
+      <ng-container matColumnDef="weight">
+        <th mat-header-cell *matHeaderCellDef>Weight</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-form-field appearance="fill">
+            <input matInput [(ngModel)]="element.weight">
+          </mat-form-field>
+        </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="firstSetReps">
+        <th mat-header-cell *matHeaderCellDef>FSR</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-form-field appearance="fill">
+            <input matInput [(ngModel)]="element.firstSetReps">
+          </mat-form-field>
+        </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="breaks">
+        <th mat-header-cell *matHeaderCellDef>Breaks</th>
+        <td mat-cell align="center" *matCellDef="let element">{{ element.breaks }}</td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  
+  <p>
+    <button mat-flat-button color="primary" (click)="updateExercises()">Submit</button>
+  </p>
+</div>

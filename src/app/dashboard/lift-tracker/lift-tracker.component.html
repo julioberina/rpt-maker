@@ -5,6 +5,7 @@
     <h1>My Workouts</h1>
     <div class="workouts">
       <ng-container *ngFor="let workout of workouts | async">
+        <ng-container *ngIf="getObsWorkout(workout)"></ng-container>
         <mat-card>
           <mat-card-title>{{ workout.alias }}</mat-card-title>
           <mat-card-subtitle>{{ workout.weeks }}-Week Program</mat-card-subtitle>
@@ -22,7 +23,7 @@
 
   <app-view-workout 
     *ngIf="isViewWorkout"
-    [workouts]="workouts"
+    [workout]="vwWorkout"
     (backToLiftTracker)="backToLiftTracker()">
 
   </app-view-workout>

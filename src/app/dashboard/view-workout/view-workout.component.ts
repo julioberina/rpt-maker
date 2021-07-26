@@ -9,11 +9,12 @@ import { DashboardService } from '../dashboard.service';
 })
 export class ViewWorkoutComponent implements OnInit {
 
-  @Input() public workouts: any;
+  @Input() public workout: any;
   @Output() public backToLiftTracker: EventEmitter<void> = new EventEmitter();
 
   public currentWeek = 1;
   public exercises: any;
+  public displayedColumns = ['name', 'sets', 'weight', 'firstSetReps', 'breaks']
 
   constructor(private dashboardService: DashboardService) { }
 
@@ -33,7 +34,7 @@ export class ViewWorkoutComponent implements OnInit {
   }
 
   next() {
-    if (this.currentWeek < this.workouts?.weeks) {
+    if (this.currentWeek < this.workout?.weeks) {
       this.currentWeek += 1;
       this.filterExercisesByWeek();
     }
@@ -41,7 +42,7 @@ export class ViewWorkoutComponent implements OnInit {
 
   daysPerWeek() {
     const result = [];
-    for (let i = 1; i <= this.workouts?.frequency; ++i)  result.push(i);
+    for (let i = 1; i <= this.workout?.frequency; ++i)  result.push(i);
     return result;
   }
 
@@ -52,10 +53,11 @@ export class ViewWorkoutComponent implements OnInit {
   }
 
   updateExercises() {
+    console.log(JSON.stringify(this.exercises));
   }
 
   private filterExercisesByWeek() {
-    this.exercises = this.workouts?.exercises?.filter((ex: any) => {
+    this.exercises = this.workout?.exercises?.filter((ex: any) => {
       return ex.week === this.currentWeek;
     });
   }

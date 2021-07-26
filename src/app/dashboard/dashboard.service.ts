@@ -57,7 +57,15 @@ export class DashboardService {
   }
 
   public updateExercises(exercises: any) {
-    return this.http.put(apiEndpoints.exercises, exercises);
+    const obs1 = this.http.put(apiEndpoints.exercises, exercises);
+    const obs2 = this.http.get(apiEndpoints.workouts).pipe(
+      map(item => {
+        this.cacheService.add('getWorkouts', item);
+        return item;
+      })
+    );
+
+    return concat(obs1, obs2);
   }
 
   public deleteWorkout(id: string) {

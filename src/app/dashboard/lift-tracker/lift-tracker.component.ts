@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { map } from 'rxjs/operators';
 import { DashboardService } from '../dashboard.service';
 import { DeleteWorkoutDialogComponent } from '../delete-workout-dialog/delete-workout-dialog.component';
 
@@ -12,7 +13,9 @@ import { DeleteWorkoutDialogComponent } from '../delete-workout-dialog/delete-wo
 export class LiftTrackerComponent implements OnInit {
 
   public workouts: any;
+  public subWorkouts: any = [];
   public isViewWorkout = false;
+  public vwWorkout: any;
 
   constructor(private dashboardService: DashboardService,
               private dialog: MatDialog,
@@ -20,10 +23,12 @@ export class LiftTrackerComponent implements OnInit {
 
   ngOnInit(): void {
     this.workouts = this.dashboardService.getWorkouts();
+    this.subWorkouts = [];
   }
 
   viewWorkout(id: string) {
-    console.log('viewId: ' + id);
+    this.vwWorkout = this.subWorkouts.filter((workout: any) => workout.id === id)[0];
+    this.isViewWorkout = true;
   }
 
   deleteWorkout(id: string, alias: string) {
@@ -39,12 +44,19 @@ export class LiftTrackerComponent implements OnInit {
     })
   }
 
+  getObsWorkout(workout: any) {
+    this.subWorkouts.push(workout);
+    return false;
+  }
+
   backToLiftTracker() {
     this.isViewWorkout = false;
   }
 
   private delete(id: string) {
     this.dashboardService.deleteWorkout(id).subscribe(res => {
+      this.subWorkouts.filter((workout: any) => workout.id !== id);
+
       this.snackBar.open('Workout deleted successfully', 'Close', {
         duration: 3000,
         panelClass: ['snack-bar']
