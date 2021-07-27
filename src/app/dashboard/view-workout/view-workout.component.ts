@@ -56,6 +56,12 @@ export class ViewWorkoutComponent implements OnInit {
     console.log(JSON.stringify(this.exercises));
   }
 
+  startTimer(element: any) {
+    if (element.breaks > 0) {
+      element.breaks -= 1;
+    }
+  }
+
   private filterExercisesByWeek() {
     this.exercises = this.workout?.exercises?.filter((ex: any) => {
       return ex.week === this.currentWeek;
