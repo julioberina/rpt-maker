@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { CacheService } from 'src/shared/cache.service';
 import { DashboardService } from '../dashboard.service';
 
@@ -15,8 +16,10 @@ export class ViewWorkoutComponent implements OnInit {
   public currentWeek = 1;
   public exercises: any;
   public displayedColumns = ['name', 'sets', 'weight', 'firstSetReps', 'breaks']
+  public isSubmitted = false;
 
-  constructor(private dashboardService: DashboardService) { }
+  constructor(private dashboardService: DashboardService,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.filterExercisesByWeek();
@@ -53,13 +56,36 @@ export class ViewWorkoutComponent implements OnInit {
   }
 
   updateExercises() {
-    console.log(JSON.stringify(this.exercises));
+    this.isSubmitted = true;
+
+    this.dashboardService.updateExercises(this.exercises).subscribe(
+      res => {
+          this.isSubmitted = false;
+          this.snackBar.open('Exercises updated successfully', 'Dismiss', { 
+            duration: 3000,
+            panelClass: ['snack-bar']
+          });
+      }, 
+      err => {
+        this.snackBar.open('Invalid Username or Password', 'Dismiss', { 
+          duration: 3000,
+          panelClass: ['snack-bar']
+        });
+        console.error(err);
+        this.isSubmitted = false;
+      }
+    );
   }
 
   startTimer(element: any) {
     if (element.breaks > 0) {
       element.breaks -= 1;
     }
+  }
+
+  toNumber(element: any) {
+    element.weight = +element.weight;
+    element.firstSetReps = +element.firstSetReps;
   }
 
   private filterExercisesByWeek() {
