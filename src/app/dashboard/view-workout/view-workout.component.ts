@@ -80,6 +80,9 @@ export class ViewWorkoutComponent implements OnInit {
   startTimer(element: any) {
     if (element.breaks > 0) {
       element.breaks -= 1;
+      const audio = new Audio('assets/alert.wav');
+      audio.load();
+      audio.play();
     }
   }
 
