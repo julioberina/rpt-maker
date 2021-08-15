@@ -8,7 +8,7 @@ export class CacheService {
   private rptCache: any = {};
 
   constructor() { 
-    this.rptCache = JSON.parse(localStorage.getItem('rptCache') || '{}');
+    this.updateCache();
   }
 
   public add(name: string, value: any) {
@@ -28,5 +28,9 @@ export class CacheService {
   public clear() {
     this.rptCache = {};
     localStorage.removeItem('rptCache');
+  }
+
+  public updateCache() {
+    this.rptCache = JSON.parse(localStorage.getItem('rptCache') || '{}');
   }
 }

@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { apiEndpoints } from 'src/api-endpoints';
 import { CacheService } from 'src/shared/cache.service';
 import { HttpService } from 'src/shared/http.service';
+import * as workTimers from 'worker-timers';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,10 @@ import { HttpService } from 'src/shared/http.service';
 export class DashboardService {
 
   constructor(private http: HttpService,
-              private cacheService: CacheService,) { }
+              private cacheService: CacheService,) {
+
+    this.dashTimer(false, 0);
+  }
 
   public createWorkout(data: any): Observable<any> {
     const obs1 = this.http.post(apiEndpoints.workouts, data);
@@ -78,5 +82,33 @@ export class DashboardService {
     );
 
     return concat(obs1, obs2);
+  }
+
+  public dashTimer(startNew: boolean, time: number) {
+    const isTimerActive = this.cacheService.get('isTimerActive');
+
+    if (!isTimerActive && startNew) {
+      this.cacheService.add('isTimerActive', true);
+      this.cacheService.add('secondsRemaining', time);
+    } else if ((!isTimerActive && !startNew) || (isTimerActive && startNew)) {
+      return;
+    } 
+
+    const audio = new Audio('assets/alert.wav');
+    audio.load();
+
+    const secondPass = setInterval(() => {
+      let secondsRemaining = this.cacheService.get('secondsRemaining');
+      
+      if (secondsRemaining <= 0) {
+        audio.play();
+        this.cacheService.remove('isTimerActive');
+        this.cacheService.remove('secondsRemaining');
+        clearInterval(secondPass);
+      } else {
+        secondsRemaining -= 1000;
+        this.cacheService.add('secondsRemaining', secondsRemaining);
+      }
+    }, 1000);
   }
 }
