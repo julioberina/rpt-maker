@@ -1,7 +1,9 @@
 <app-dash-header></app-dash-header>
 
 <div class="container">
-  <p>Dashboard</p>
+  <button mat-flat-button (click)="search()" color="primary">Search Workouts</button>
+  <p>OR</p>
+  <button mat-flat-button (click)="liftTracker()" color="primary">View Current Workouts</button>
 </div>
 
 <app-nav-footer></app-nav-footer>
